@@ -1,4 +1,4 @@
-# About
+## About
 References for this project: [https://github.com/frappe/frappe_docker](https://github.com/frappe/frappe_docker)
 
 ## Configuration
