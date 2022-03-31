@@ -6,8 +6,6 @@ services:
       - "80:80"
     volumes:
       - ./frappe-data:/home/frappe/apps/
-    build:
-      context: frappe
     environment:
       - FRAPPE_BRANCH=version-13
       - ERPNEXT_BRANCH=version-13
