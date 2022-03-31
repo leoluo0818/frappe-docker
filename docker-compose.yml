@@ -1,0 +1,33 @@
+version: "3"
+services:
+  frappe:
+    image: youuy/frappe:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./frappe-data:/home/frappe/apps/
+    build:
+      context: frappe
+    environment:
+      - FRAPPE_BRANCH=version-13
+      - ERPNEXT_BRANCH=version-13
+      - DOMAIN=erp.example.xyz
+      - DB_TYPE=mariadb
+      - DB_HOST=frappe-db
+      - DB_PASSWORD=changeme
+  frappe-db:
+    image: mariadb:10.6
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: changeme
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--skip-character-set-client-handshake",
+        "--skip-innodb-read-only-compressed"
+      ]
+    restart: always
+    volumes:
+      - ./mariadb-data:/var/lib/mysql
